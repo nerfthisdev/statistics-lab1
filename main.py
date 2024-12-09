@@ -64,6 +64,14 @@ plot_function(nums, lambda x: empirical_distribution_function(x, nums))
 
 ### гистограмма и полигон приведенных частот группированной выборки
 
+plot_histogram_with_sturgess(nums, "output/histogram_sturgess.png")
+plot_histogram(
+    get_whole_range(nums),
+    9,
+    nums,
+    "output/histogram_9_bins.png"
+)
+
 ### Помощь для теха
 path_to_analytical_func_tex = "output/analytical_func.tex"
 with open(path_to_analytical_func_tex, "w") as f:
@@ -73,23 +81,22 @@ print(f"Вид эмпирической функции распределени�
 
 path_to_statistical_interval_series_tex = "output/statistical_interval_series.tex"
 with open(path_to_statistical_interval_series_tex, "w") as f:
-    whole_range = get_whole_range(nums)
-    count = get_interval_count_by_sturgess(len(nums))
-    whole_range_with_offsets = whole_range + get_interval_length(whole_range, count)
+    output = dict_to_latex_table_str(
+        get_statistical_interval_series_new(
+            get_whole_range_with_offsets(nums),
+            get_interval_count_by_sturgess(len(nums)),
+            nums))
 
-    plot_histogram(whole_range_with_offsets, count, nums)
-
-    output = dict_to_latex_table_str(get_statistical_interval_series_new(whole_range_with_offsets, count, nums))
     f.write(output)
 print(f"Интервальный ряд: записаны в {path_to_statistical_interval_series_tex}")
 
-path_to_statistical_series = "output/statistical_series.tex"
+path_to_statistical_series = "output/statistical_series_sturgess.tex"
 with open(path_to_statistical_series, "w") as f:
     output = dict_to_latex_table_str(get_statistical_series(nums))
     f.write(output)
 print(f"Статистический ряд: записаны в {path_to_statistical_series}")
 
-path_to_statistical_interval_series_test_tex = "output/statistical_interval_series_test.tex"
+path_to_statistical_interval_series_test_tex = "output/statistical_interval_series_9_bins.tex"
 with open(path_to_statistical_interval_series_test_tex, "w") as f:
     output = dict_to_latex_table_str(get_statistical_interval_series_new(get_whole_range(nums), 9, nums))
     f.write(output)

@@ -40,7 +40,7 @@ def get_latex_form_empirical_distribution_func(nums: list[float], func) -> str:
     output +=f"    0.0, x < {sorted_nums[0]}\\\\\n"
     for i in range(len(sorted_nums) - 1):
         output += f"    {round(func(sorted_nums[i+1]), 10)},\\quad {sorted_nums[i]} \\leq x < {sorted_nums[i+1]} \\\\\n"
-    output += f"    1,\\quad x \\geq {sorted_nums[-1]} \\\\\n"
+    output += f"    1.0,\\quad x \\geq {sorted_nums[-1]} \\\\\n"
     output += "\\end{cases}\n"
     return output
 
