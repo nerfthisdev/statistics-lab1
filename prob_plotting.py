@@ -1,21 +1,23 @@
 import matplotlib.pyplot as plt
 
-from interval_series import get_interval_count, get_interval_length, get_interval_statistical_series
+from interval_series import *
 
 # from main import get_interval_count, get_interval_length, get_interval_statistical_series
 
+# def plot_histogram_with_sturgess(nums: list[float]) -> None:
 
-def plot_histogram(nums: list[float]) -> None:
-    interval_count = get_interval_count(nums)
-    interval_length = get_interval_length(nums)
 
-    print(f"Количество интервалов: {interval_count}")
-    print("Длина интервала: {:.2f}".format(interval_length))
+def plot_histogram(whole_range: float, count: int, nums: list[float]) -> None:
+    # interval_count = get_interval_count_by_sturgess(nums)
+    interval_length = get_interval_length(whole_range, count)
+
+    # print(f"Количество интервалов по ф. Стерджесса: {interval_count}")
+    # print("Длина интервала для покрытия с отступом: {:.2f}".format(interval_length))
 
     # intervals_starting_point = min(nums) - interval_length/2
     # Центры интервалов для полигона
     bin_centers = []
-    for i in range(interval_count):
+    for i in range(count):
         # bin_centers.append(intervals_starting_point +
         #                 interval_length*(i+1) - interval_length/2)
 
@@ -23,7 +25,7 @@ def plot_histogram(nums: list[float]) -> None:
         bin_centers.append(min(nums) + interval_length*(i+1))
 
     hist_density = [x/(len(nums)*interval_length) for x in
-                    get_interval_statistical_series(nums)]
+                    get_interval_statistical_series_new(whole_range, count, nums)]
 
     # Построение графика гистограммы
     plt.bar(bin_centers, hist_density, width=interval_length,

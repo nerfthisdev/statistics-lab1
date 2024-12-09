@@ -1,5 +1,9 @@
 import math
 
+import scipy
+
+from q_table import get_q_table_value
+
 
 def get_variation_series(nums: list[float]):
     return sorted(nums)
@@ -72,3 +76,49 @@ def empirical_distribution_function(x: float, data: list[float]) -> float:
             count += 1
 
     return count / len(data)
+
+def laplace_function(x: float) -> float:
+    return scipy.stats.norm.cdf(x)
+
+def student_coefficient(gamma, n):
+    return scipy.stats.t.ppf(gamma, n)
+
+def laplace_normalized_function(x: float) -> float:
+    return laplace_function(x) - 0.5
+
+def get_inverse_laplace(alpha: float):
+    error_margin = 0.0001
+    #начальное значение - половина от максимального
+    step = 4/2
+
+    last_point = step
+    last_value = 0
+    while (math.fabs(last_value - alpha) > error_margin):
+        last_value = laplace_function(last_point)
+
+        if (last_value < alpha):
+            last_point += step
+        if (last_value >=alpha):
+            last_point -= step
+
+        step = step / 2
+
+    return last_point
+
+
+def get_confidence_interval_for_expvalue(average_value: float, n: int, sigma: float, confidence_prob: float) -> tuple[float, float]:
+    t_gamma = 0
+    if (n <= 30):
+        t_gamma = student_coefficient(confidence_prob/2 + 0.5, n-1)
+    else:
+        t_gamma = get_inverse_laplace(confidence_prob/2 + 0.5)
+
+    res = t_gamma * sigma / math.sqrt(n)
+    return average_value - res, average_value + res
+
+def get_confidence_interval_for_standard_deviation(sigma_corrected: float, n: int, gamma: float) -> tuple[float, float]:
+    q = get_q_table_value(gamma, n)
+    if (q < 1):
+        return sigma_corrected * (1 - q), sigma_corrected * (1 + q)
+    else:
+        return 0, sigma_corrected * (1 + q)
