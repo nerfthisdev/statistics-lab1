@@ -19,7 +19,7 @@ def get_interval_length(whole_range: float, count: int) -> float:
 def get_intervals_starting_point(whole_range: float, nums: list[float]) -> float:
     return min(nums) - (whole_range - (max(nums) - min(nums)))/2
 
-def get_interval_statistical_series_new(whole_range: float, count: int, nums: list[float]) -> list[float]:
+def get_interval_statistical_series(whole_range: float, count: int, nums: list[float]) -> list[float]:
     # interval_length = get_interval_length(whole_range, count)
     intervals_starting_point = get_intervals_starting_point(whole_range, nums)
 
@@ -41,7 +41,7 @@ def get_interval_statistical_series_new(whole_range: float, count: int, nums: li
     return result
 
 
-def get_interval_boarders_new(whole_range: float, count: int,  nums: list[float]) -> list[float]:
+def get_interval_boarders(whole_range: float, count: int,  nums: list[float]) -> list[float]:
     intervals_starting_point = get_intervals_starting_point(whole_range, nums)
     interval_length = get_interval_length(whole_range, count)
     result = []
@@ -49,23 +49,9 @@ def get_interval_boarders_new(whole_range: float, count: int,  nums: list[float]
         result.append(intervals_starting_point + interval_length*i)
     return result
 
-
-# def get_interval_boarders(nums: list[float]) -> list[float]:
-#     interval_count = get_interval_count_by_sturgess(nums)
-#     interval_length = get_sturgess_interval_length_with_offset(nums)
-#     intervals_starting_point = min(nums) - interval_length/2
-
-#     result = []
-
-#     for i in range(interval_count + 1):
-#         result.append(round(intervals_starting_point + interval_length*i, 4))
-
-#     return result
-
-
-def get_statistical_interval_series_new(whole_range: float, count: int, nums: list[float]) -> dict[str, float]:
-    boarders = get_interval_boarders_new(whole_range, count, nums)
-    series = get_interval_statistical_series_new(whole_range, count, nums)
+def get_statistical_interval_series(whole_range: float, count: int, nums: list[float]) -> dict[str, float]:
+    boarders = get_interval_boarders(whole_range, count, nums)
+    series = get_interval_statistical_series(whole_range, count, nums)
 
     output = dict[str, float]()
 

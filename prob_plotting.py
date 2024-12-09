@@ -13,7 +13,7 @@ def plot_histogram_with_sturgess(nums: list[float], file_name: str) -> None:
 
 def plot_histogram(whole_range: float, count: int, nums: list[float], file_name: str) -> None:
     interval_length = get_interval_length(whole_range, count)
-    interval_boarders = get_interval_boarders_new(whole_range, count, nums)
+    interval_boarders = get_interval_boarders(whole_range, count, nums)
 
     # Центры интервалов для полигона
     bin_centers = []
@@ -21,7 +21,7 @@ def plot_histogram(whole_range: float, count: int, nums: list[float], file_name:
         bin_centers.append((interval_boarders[i] + interval_boarders[i+1])/2)
 
     hist_density = [x/(len(nums)*interval_length) for x in
-                    get_interval_statistical_series_new(whole_range, count, nums)]
+                    get_interval_statistical_series(whole_range, count, nums)]
 
     # Построение графика гистограммы
     plt.bar(bin_centers, hist_density, width=interval_length,

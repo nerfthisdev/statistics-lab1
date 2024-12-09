@@ -82,7 +82,7 @@ print(f"Вид эмпирической функции распределени�
 path_to_statistical_interval_series_tex = "output/statistical_interval_series.tex"
 with open(path_to_statistical_interval_series_tex, "w") as f:
     output = dict_to_latex_table_str(
-        get_statistical_interval_series_new(
+        get_statistical_interval_series(
             get_whole_range_with_offsets(nums),
             get_interval_count_by_sturgess(len(nums)),
             nums))
@@ -98,6 +98,6 @@ print(f"Статистический ряд: записаны в {path_to_statis
 
 path_to_statistical_interval_series_test_tex = "output/statistical_interval_series_9_bins.tex"
 with open(path_to_statistical_interval_series_test_tex, "w") as f:
-    output = dict_to_latex_table_str(get_statistical_interval_series_new(get_whole_range(nums), 9, nums))
+    output = dict_to_latex_table_str(get_statistical_interval_series(get_whole_range(nums), 9, nums))
     f.write(output)
 print(f"Интервальный ряд: записаны в {path_to_statistical_interval_series_test_tex}")
