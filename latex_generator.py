@@ -56,3 +56,15 @@ def get_confidence_interval_for_expvalue_large_set_with_latex_steps(average_valu
 
     output += f"$$ ({average_value - varepsilon}, {average_value + varepsilon}) $$\n"
     return output
+
+
+
+def get_latex_form_empirical_distribution_func(nums: list[float], func) -> str:
+    sorted_nums = get_variation_series(set(nums))
+
+    output = "F^*(x) = \n"
+    output +=f"    0.0, x < {sorted_nums[0]}\n"
+    for i in range(len(sorted_nums) - 1):
+        output += f"    {round(func(sorted_nums[i+1]), 2)},  {sorted_nums[i]} <= x < {sorted_nums[i+1]} \n"
+    output += f"    1.0, x >= {sorted_nums[-1]} \n"
+    return output

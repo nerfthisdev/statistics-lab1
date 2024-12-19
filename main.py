@@ -1,5 +1,6 @@
 from interval_series import *
 from latex_generator import *
+from normal_distibution_hypohesis_check import compute_theoretical_values
 from nums import get_second_lab_nums
 from prob_plotting import *
 from sample_functions import *
@@ -58,22 +59,22 @@ plot_function(nums, lambda x: empirical_distribution_function(x, nums))
 
 ### гистограмма и полигон приведенных частот группированной выборки
 
-plot_histogram_with_sturgess(nums, "output/histogram_sturgess.png")
+plot_histogram_with_sturgess(nums, "tex/output/histogram_sturgess.png")
 plot_histogram(
     get_whole_range(nums),
     9,
     nums,
-    "output/histogram_9_bins.png"
+    "tex/output/histogram_9_bins.png"
 )
 
 ### Помощь для теха
-path_to_analytical_func_tex = "output/analytical_func.tex"
+path_to_analytical_func_tex = "tex/output/analytical_func.tex"
 with open(path_to_analytical_func_tex, "w") as f:
     f.write(get_latex_form_empirical_distribution_func(nums,
         lambda x: empirical_distribution_function(x, nums)))
 print(f"Вид эмпирической функции распределения: записан в {path_to_analytical_func_tex}")
 
-path_to_statistical_interval_series_tex = "output/statistical_interval_series.tex"
+path_to_statistical_interval_series_tex = "tex/output/statistical_interval_series.tex"
 with open(path_to_statistical_interval_series_tex, "w") as f:
     output = dict_to_latex_table_str(
         get_statistical_interval_series(
@@ -84,14 +85,28 @@ with open(path_to_statistical_interval_series_tex, "w") as f:
     f.write(output)
 print(f"Интервальный ряд: записаны в {path_to_statistical_interval_series_tex}")
 
-path_to_statistical_series = "output/statistical_series_sturgess.tex"
+path_to_statistical_series = "tex/output/statistical_series_sturgess.tex"
 with open(path_to_statistical_series, "w") as f:
     output = dict_to_latex_table_str(get_statistical_series(nums))
     f.write(output)
 print(f"Статистический ряд: записаны в {path_to_statistical_series}")
 
-path_to_statistical_interval_series_test_tex = "output/statistical_interval_series_9_bins.tex"
+path_to_statistical_interval_series_test_tex = "tex/output/statistical_interval_series_9_bins.tex"
 with open(path_to_statistical_interval_series_test_tex, "w") as f:
     output = dict_to_latex_table_str(get_statistical_interval_series(get_whole_range(nums), 9, nums))
     f.write(output)
 print(f"Интервальный ряд: записаны в {path_to_statistical_interval_series_test_tex}")
+
+
+# --------------------------------------------------------
+
+hypothetical_deviation = compute_theoretical_values(nums, 9)
+print(f"Фактическое значение хи_H гипотезы по кр. Пирсона: {hypothetical_deviation}")
+
+critical_value = 14.4
+print(f"Хи критическое по кр. Пирсона (alpha = 0.025, 9-3) = {critical_value}")
+
+if (hypothetical_deviation < critical_value):
+    print(f"{hypothetical_deviation} < {critical_value} => гипотеза норм. распр. выполняется")
+else:
+    print(f"{hypothetical_deviation} >= {critical_value} => гипотеза норм. распр. НЕ выполняется")

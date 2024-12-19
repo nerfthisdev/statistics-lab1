@@ -59,3 +59,10 @@ def get_statistical_interval_series(whole_range: float, count: int, nums: list[f
         output[f"[{boarders[i]}, {boarders[i+1]})"] = series[i]
 
     return output
+
+def get_interval_centers(interval_boarders: list[float]):
+    bin_centers = []
+    for i in range(len(interval_boarders) - 1):
+        bin_centers.append((interval_boarders[i] + interval_boarders[i+1])/2)
+
+    return bin_centers;
