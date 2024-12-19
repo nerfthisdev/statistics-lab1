@@ -1,7 +1,7 @@
 import math
 from sample_functions import get_expected_value_estimate, get_inverse_laplace, get_sample_standard_deviation_corrected, get_variation_series
 
-def dict_to_latex_table_str(data: dict[any, any]) -> str:
+def compute_table_to_latex_table_str(data: dict[any, any]) -> str:
     dict_len = len(data.keys());
 
     column_count = dict_len if dict_len < 10 else 10
@@ -68,3 +68,22 @@ def get_latex_form_empirical_distribution_func(nums: list[float], func) -> str:
         output += f"    {round(func(sorted_nums[i+1]), 2)},  {sorted_nums[i]} <= x < {sorted_nums[i+1]} \n"
     output += f"    1.0, x >= {sorted_nums[-1]} \n"
     return output
+
+def output_dict_to_file(dict, path):
+    with open(path, "w") as f:
+        output = compute_table_to_latex_table_str(dict)
+        f.write(output)
+
+# def compute_table_to_latex_table_str(data: dict[any, any]) -> str:
+#     height = len(data.keys())
+#     width = len(data[1].keys()) + 1
+
+#     output = "\\begin{tabular}{|" + "|".join(["c"]*width) + "|}\n"
+#     output += f"    "
+#     for key, value in data.items():
+#         output += f"    {key} & {' & '.join(data[key].values())}\\\\\n"
+#         output += f"    \\hline\n"
+
+
+#     output += "\\end{tabular}"
+#     return output

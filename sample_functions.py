@@ -1,8 +1,10 @@
 import math
 
 import scipy
-
+import numpy as np
 from q_table import get_q_table_value
+
+np.set_printoptions(legacy='1.25')
 
 
 def get_variation_series(nums: list[float]):

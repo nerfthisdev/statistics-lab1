@@ -7,6 +7,8 @@ from sample_functions import *
 
 nums = get_second_lab_nums()
 
+
+
 # Необходимо определить следующие статистические
 # характеристики: вариационный ряд, экстремальные значения и размах,
 # оценки математического ожидания и среднеквадратического отклонения,
@@ -26,16 +28,16 @@ confidence_prob = 0.9
 print("Оценка математического ожидания: {:.2f}"
     .format(expected_value))
 
-print(f"Доверительный интервал мат. ожидания с доверительной вероятностью ɣ={confidence_prob}",
-    get_confidence_interval_for_expvalue_large_set_with_latex_steps(
+path_to_expected_value_trusted_interval = "tex/output/expected_value_trusted_interval.tex"
+with open(path_to_expected_value_trusted_interval, "w") as f:
+    output = get_confidence_interval_for_expvalue_large_set_with_latex_steps(
         expected_value,
         len(nums),
-        get_sample_standard_deviation_corrected(
-            nums,
-            expected_value),
-        confidence_prob
-        )
-    )
+        get_sample_standard_deviation_corrected(nums, expected_value),
+        confidence_prob)
+
+    f.write(output)
+print(f"Доверительный интервал мат. ожидания с доверительной вероятностью ɣ={confidence_prob}: записаны в {path_to_expected_value_trusted_interval}")
 
 
 print("Стандартное отклонение {:.2f}"
@@ -76,7 +78,7 @@ print(f"Вид эмпирической функции распределени�
 
 path_to_statistical_interval_series_tex = "tex/output/statistical_interval_series.tex"
 with open(path_to_statistical_interval_series_tex, "w") as f:
-    output = dict_to_latex_table_str(
+    output = compute_table_to_latex_table_str(
         get_statistical_interval_series(
             get_whole_range_with_offsets(nums),
             get_interval_count_by_sturgess(len(nums)),
@@ -87,19 +89,18 @@ print(f"Интервальный ряд: записаны в {path_to_statistica
 
 path_to_statistical_series = "tex/output/statistical_series_sturgess.tex"
 with open(path_to_statistical_series, "w") as f:
-    output = dict_to_latex_table_str(get_statistical_series(nums))
+    output = compute_table_to_latex_table_str(get_statistical_series(nums))
     f.write(output)
 print(f"Статистический ряд: записаны в {path_to_statistical_series}")
 
 path_to_statistical_interval_series_test_tex = "tex/output/statistical_interval_series_9_bins.tex"
 with open(path_to_statistical_interval_series_test_tex, "w") as f:
-    output = dict_to_latex_table_str(get_statistical_interval_series(get_whole_range(nums), 9, nums))
+    output = compute_table_to_latex_table_str(get_statistical_interval_series(get_whole_range(nums), 9, nums))
     f.write(output)
 print(f"Интервальный ряд: записаны в {path_to_statistical_interval_series_test_tex}")
 
 
 # --------------------------------------------------------
-
 hypothetical_deviation = compute_theoretical_values(nums, 9)
 print(f"Фактическое значение хи_H гипотезы по кр. Пирсона: {hypothetical_deviation}")
 
