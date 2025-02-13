@@ -68,3 +68,23 @@ def get_latex_form_empirical_distribution_func(nums: list[float], func) -> str:
         output += f"    {round(func(sorted_nums[i+1]), 2)},  {sorted_nums[i]} <= x < {sorted_nums[i+1]} \n"
     output += f"    1.0, x >= {sorted_nums[-1]} \n"
     return output
+
+def compute_table_to_latex_table_str_to_file(dict, path):
+    with open(path, "w") as f:
+        output = compute_table_to_latex_table_str(dict)
+        f.write(output)
+
+def compute_table_to_latex_table_str(data: dict[any, any]) -> str:
+    # height = len(data.keys())
+    width = len(data[1].keys()) + 1
+
+    output = "\\begin{tabular}{|" + "|".join(["c"]*width) + "|}\n"
+    output += f"    \\hline\n"
+    output += f"    i & {' & '.join(f"${x}$" for x in data[1].keys())}\\\\\n"
+    output += f"    \\hline\n"
+    for key, value in data.items():
+        output += f"    {key} & {' & '.join([f"${x}$" for x in data[key].values()])}\\\\\n"
+        output += f"    \\hline\n"
+
+    output += "\\end{tabular}"
+    return output

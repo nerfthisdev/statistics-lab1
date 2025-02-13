@@ -1,6 +1,8 @@
 
 
-from sample_functions import get_inverse_laplace
+from sample_functions import *
 
 
-# print(get_inverse_laplace(0.495 + 0.5))
+# print(laplace_normalized_function(1.8994140625))
+
+print(2*laplace_normalized_function(3))

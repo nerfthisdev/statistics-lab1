@@ -1,9 +1,10 @@
 import math
 
 import scipy
-
+import numpy as np
 from q_table import get_q_table_value
 
+np.set_printoptions(legacy='1.25')
 
 def get_variation_series(nums: list[float]):
     return sorted(nums)
@@ -40,6 +41,17 @@ def get_mode(nums: list[float]) -> float | None:
             return key
     return None
 
+def get_median(nums: list[float]):
+    sorted_nums: list[float] = get_variation_series(nums)
+
+    if (len(sorted_nums) % 2 == 0):
+        median_index: int = math.floor(len(sorted_nums) / 2)
+
+        return (nums[median_index] + nums[median_index + 1])/2
+    else:
+        median_index = math.floor(len(sorted_nums) / 2) + 1
+
+        return nums[median_index]
 
 def get_expected_value_estimate(nums: list[float]) -> float:
     #просто средне арифметическое

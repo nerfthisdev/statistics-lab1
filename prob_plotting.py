@@ -38,8 +38,6 @@ def plot_histogram(whole_range: float, count: int, nums: list[float], file_name:
     plt.savefig(file_name)
     plt.close()
 
-
-
 def plot_function(nums: list[float], func):
     x_values = nums.copy()
     x_values.append(min(nums)-0.5)
@@ -53,4 +51,33 @@ def plot_function(nums: list[float], func):
     plt.title("Эмпирическая функция распределения")
     plt.grid(True)
     plt.savefig("tex/output/distribution_function.png")
+    plt.close()
+
+
+def plot_cumulative(whole_range: float, count: int, nums: list[float], file_name: str) -> None:
+    interval_length = get_interval_length(whole_range, count)
+    interval_boarders = get_interval_boarders(whole_range, count, nums)
+
+    # Центры интервалов для полигона
+    bin_centers = get_interval_centers(interval_boarders)
+
+    interval_density = get_interval_statistical_series(whole_range, count, nums)
+
+    prev = 0
+    cumulative_values = list[float]()
+    for i in range(len(interval_density)):
+        prev += interval_density[i]
+        cumulative_values.append(prev)
+
+    # Построение полигона частот
+    plt.plot(bin_centers, cumulative_values, marker='o',
+            color='blue', label="Полигон частот")
+
+    # Подписи осей и график
+    plt.xlabel("Значение")
+    plt.ylabel("Плотность частоты")
+    plt.title("Гистограмма частот и полигон частот")
+    plt.legend()
+    plt.grid(True)
+    plt.savefig(file_name)
     plt.close()
