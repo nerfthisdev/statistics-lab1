@@ -38,6 +38,7 @@ def compute_theoretical_values(nums: list[float], count: int):
     compute_table_to_latex_table_str_to_file(first_table, "tex/output/hypophyses/first_table.tex")
     # print(f"{compute_table_to_latex_table_str(first_table)}")
 
+
     print("-----------------------------------------")
     n_i_shtrih = dict()
     P_i = dict()
@@ -47,14 +48,12 @@ def compute_theoretical_values(nums: list[float], count: int):
         (second_table.get(i))[f"(z_{i}, z_{i+1})"] = (z_i[i], z_i[i+1])
         (second_table.get(i))[f"(\\Phi(z_{i})"] = round(laplace_normalized_function(z_i[i]),2)
         (second_table.get(i))[f"(\\Phi(z_{i+1})"] = round(laplace_normalized_function(z_i[i+1]),2)
-
         P_i[i] = laplace_normalized_function(z_i[i+1]) - laplace_normalized_function(z_i[i])
         (second_table.get(i))[f"P_{i}"] = round(P_i[i],2)
         n_i_shtrih[i] = len(nums)*(laplace_normalized_function(z_i[i+1]) - laplace_normalized_function(z_i[i]))
         (second_table.get(i))[f"n'_{i}"] = round(n_i_shtrih[i],2)
         print(f"{i}: {second_table[i]}")
-    # return hypothetical_deviation
-    print(f"sum n'_i = {sum(n_i_shtrih.values())}")
+    print(f"sum n_i' = {sum(n_i_shtrih.values())}")
     print(f"sum P_i = {sum(P_i.values())}")
     print("-------------------------------------")
     compute_table_to_latex_table_str_to_file(second_table, "tex/output/hypophyses/second_table.tex")

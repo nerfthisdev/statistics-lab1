@@ -1,7 +1,7 @@
 import math
 from sample_functions import get_expected_value_estimate, get_inverse_laplace, get_sample_standard_deviation_corrected, get_variation_series
 
-def compute_table_to_latex_table_str(data: dict[any, any]) -> str:
+def dict_to_latex_table_str(data: dict[any, any]) -> str:
     dict_len = len(data.keys());
 
     column_count = dict_len if dict_len < 10 else 10

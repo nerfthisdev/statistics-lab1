@@ -9,8 +9,6 @@ nums = get_matstat_nums()
 
 print(len(nums))
 
-
-
 # Необходимо определить следующие статистические
 # характеристики: вариационный ряд, экстремальные значения и размах,
 # оценки математического ожидания и среднеквадратического отклонения,
@@ -93,7 +91,7 @@ print(f"Вид эмпирической функции распределени�
 
 path_to_statistical_interval_series_tex = "tex/output/statistical_interval_series.tex"
 with open(path_to_statistical_interval_series_tex, "w") as f:
-    output = compute_table_to_latex_table_str(
+    output = dict_to_latex_table_str(
         get_statistical_interval_series(
             get_whole_range_with_offsets(nums),
             get_interval_count_by_sturgess(len(nums)),
@@ -104,13 +102,13 @@ print(f"Интервальный ряд: записаны в {path_to_statistica
 
 path_to_statistical_series = "tex/output/statistical_series_sturgess.tex"
 with open(path_to_statistical_series, "w") as f:
-    output = compute_table_to_latex_table_str(get_statistical_series(nums))
+    output = dict_to_latex_table_str(get_statistical_series(nums))
     f.write(output)
 print(f"Статистический ряд: записаны в {path_to_statistical_series}")
 
 path_to_statistical_interval_series_test_tex = f"tex/output/statistical_interval_series_{bin_count}_bins.tex"
 with open(path_to_statistical_interval_series_test_tex, "w") as f:
-    output = compute_table_to_latex_table_str(get_statistical_interval_series(get_whole_range(nums), 9, nums))
+    output = dict_to_latex_table_str(get_statistical_interval_series(get_whole_range(nums), bin_count, nums))
     f.write(output)
 print(f"Интервальный ряд: записаны в {path_to_statistical_interval_series_test_tex}")
 
