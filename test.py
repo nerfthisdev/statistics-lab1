@@ -1,6 +1,6 @@
 
 
-from sample_functions import *
+from variation_series import *
 
 
 # print(laplace_normalized_function(1.8994140625))

@@ -1,3 +1,4 @@
+from collections import OrderedDict
 import math
 
 import scipy
@@ -29,7 +30,7 @@ def get_statistical_series(nums) -> dict[float, int]:
         if (number_freq.get(num, None) == None):
             number_freq[num] = 0
         number_freq[num] += 1
-    return number_freq
+    return OrderedDict(sorted(number_freq.items()))
 
 def get_mode(nums: list[float]) -> float | None:
     number_freq = get_statistical_series(nums)
@@ -45,11 +46,11 @@ def get_median(nums: list[float]):
     sorted_nums: list[float] = get_variation_series(nums)
 
     if (len(sorted_nums) % 2 == 0):
-        median_index: int = math.floor(len(sorted_nums) / 2)
+        median_index: int = len(sorted_nums) / 2
 
         return (nums[median_index] + nums[median_index + 1])/2
     else:
-        median_index = math.floor(len(sorted_nums) / 2) + 1
+        median_index: int = math.floor(len(sorted_nums) / 2)
 
         return nums[median_index]
 
@@ -68,6 +69,9 @@ def get_sample_variance(nums: list[float], expected_value: float) -> float:
     # тут не нужно умножать на n_i (частоту значения), потому что
     # мы пользуемся массивом (с повторяющимися элементами), а не множеством
     return sum(map(lambda x: (x - expected_value) ** 2, nums)) / len(nums)
+
+def moment_of_nth_order(nums: list[float], expected_value: float, nth_order: int):
+    return sum(map(lambda x: (x - expected_value) ** nth_order, nums)) / len(nums)
 
 # Выборочное среднеквадратическое отклонение
 def get_sample_standard_deviation(nums: list[float], expected_value: float):

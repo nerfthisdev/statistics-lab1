@@ -1,10 +1,10 @@
 
 import math
 
-from sample_functions import get_whole_range
+from variation_series import get_whole_range
 
 def get_interval_count_by_sturgess(n: int) -> int:
-    return math.ceil(1 + math.log2(n))
+    return math.floor(1 + math.log2(n))
 
 def get_whole_range_with_offsets(nums):
     whole_range = get_whole_range(nums)

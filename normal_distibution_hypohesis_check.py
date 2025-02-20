@@ -7,7 +7,7 @@
 
 from interval_series import *
 from latex_generator import *
-from sample_functions import *
+from variation_series import *
 
 def compute_theoretical_values(nums: list[float], count: int):
     whole_range = get_whole_range(nums)
