@@ -18,6 +18,8 @@ from variation_series import *
 def make_task1(precision):
     nums = get_first_task_nums()
 
+    print(f"n = {len(nums)}")
+
     print("Вариационный ряд:", get_variation_series_pretty(nums))
     print(get_extremes(nums))
     print("Размах: {:.2f}".format(get_whole_range(nums)))

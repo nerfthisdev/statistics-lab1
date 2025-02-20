@@ -24,6 +24,8 @@ def make_task2(precision):
     nums = get_second_nums()
 
     whole_range = get_whole_range(nums)
+    print(f"n = {len(nums)}")
+
     print(get_extremes(nums))
     print("Размах: {:.2f}".format(whole_range))
 
