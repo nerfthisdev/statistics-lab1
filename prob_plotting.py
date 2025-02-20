@@ -3,24 +3,16 @@ import matplotlib.pyplot as plt
 from interval_series import *
 
 
-def plot_histogram_with_sturgess(nums: list[float], file_name: str) -> None:
-    whole_range_with_offsets = get_whole_range_with_offsets(nums)
-
-    plot_histogram(
-        whole_range_with_offsets,
-        get_interval_count_by_sturgess(len(nums)),
-        nums,
-        file_name,
-    )
-
-
-def plot_histogram(
-    whole_range: float, count: int, nums: list[float], file_name: str
+def plot_histogram_with_mode(
+    whole_range: float,
+    count: int,
+    nums: list[float],
+    file_name: str,
+    mode: float | None = None,
 ) -> None:
     interval_length = get_interval_length(whole_range, count)
     interval_boarders = get_interval_boarders(whole_range, count, nums)
 
-    # Центры интервалов для полигона
     bin_centers = get_interval_centers(interval_boarders)
 
     hist_density = [
@@ -28,7 +20,6 @@ def plot_histogram(
         for x in get_interval_statistical_series(whole_range, count, nums)
     ]
 
-    # Построение графика гистограммы
     plt.bar(
         bin_centers,
         hist_density,
@@ -38,10 +29,14 @@ def plot_histogram(
         label="Гистограмма частот",
     )
 
-    # Построение полигона частот
     plt.plot(
         bin_centers, hist_density, marker="o", color="blue", label="Полигон частот"
     )
+
+    if mode is not None:
+        plt.axvline(
+            mode, color="red", linestyle="--", linewidth=2, label=f"Мода ({mode:.2f})"
+        )
 
     # Подписи осей и график
     plt.xlabel("Значение")
@@ -83,32 +78,83 @@ def plot_function(nums: list[float], func, file_path: str):
     plt.close()
 
 
-def plot_cumulative(
-    whole_range: float, count: int, nums: list[float], file_name: str
+def plot_cumulative_with_median(
+    whole_range: float,
+    count: int,
+    nums: list[float],
+    file_name: str,
+    median_value: float | None = None,
 ) -> None:
-    interval_length = get_interval_length(whole_range, count)
     interval_boarders = get_interval_boarders(whole_range, count, nums)
 
     # Центры интервалов для полигона
     bin_centers = get_interval_centers(interval_boarders)
-
     interval_density = get_interval_statistical_series(whole_range, count, nums)
-
     prev = 0
     cumulative_values = list[float]()
     for i in range(len(interval_density)):
         prev += interval_density[i]
         cumulative_values.append(prev)
 
-    # Построение полигона частот
     plt.plot(
-        bin_centers, cumulative_values, marker="o", color="blue", label="Полигон частот"
+        bin_centers,
+        cumulative_values,
+        marker="o",
+        color="blue",
+        label="Кумулятивная кривая",
     )
 
-    # Подписи осей и график
+    if median_value is not None:
+        plt.axvline(
+            x=median_value,
+            color="red",
+            linestyle="--",
+            linewidth=1.5,
+            label=f"Медиана ({median_value:.2f})",
+        )
+
     plt.xlabel("Значение")
-    plt.ylabel("Плотность частоты")
-    plt.title("Гистограмма частот и полигон частот")
+    plt.ylabel("Накопленная частота")
+    plt.title("Кумулята с медианой")
+    plt.legend()
+    plt.grid(True)
+    plt.savefig(file_name)
+    plt.close()
+
+
+def plot_ogive(
+    whole_range: float,
+    count: int,
+    nums: list[float],
+    file_name: str,
+    median_value: float | None = None,
+) -> None:
+    interval_boarders = get_interval_boarders(whole_range, count, nums)
+
+    bin_centers = get_interval_centers(interval_boarders)
+    interval_density = get_interval_statistical_series(whole_range, count, nums)
+    prev = 0
+    cumulative_values = list[float]()
+    for i in range(len(interval_density)):
+        prev += interval_density[i]
+        cumulative_values.append(prev)
+
+    plt.plot(
+        cumulative_values, bin_centers, marker="o", color="blue", label="Полигон частот"
+    )
+
+    if median_value is not None:
+        plt.axhline(
+            y=median_value,
+            color="red",
+            linestyle="--",
+            linewidth=1.5,
+            label=f"Медиана ({median_value:.2f})",
+        )
+
+    plt.xlabel("Накопленная частота")
+    plt.ylabel("Значение")
+    plt.title("Огива")
     plt.legend()
     plt.grid(True)
     plt.savefig(file_name)

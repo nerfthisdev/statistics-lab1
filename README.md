@@ -25,3 +25,6 @@
 ![{9A93D347-E5E7-4920-A287-AFC89A79F6E1}](https://github.com/user-attachments/assets/a9e6f9f8-f203-4d36-bfaa-dcb1c68d2aff)
 
 ![{5B061901-E43B-4997-8835-DE392FF5CD1A}](https://github.com/user-attachments/assets/2890fd71-563d-4d98-9efa-d348dac581b3)
+
+
+###Результаты

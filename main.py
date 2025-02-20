@@ -1,8 +1,8 @@
-from interval_series import *
-from latex_generator import *
-from normal_distibution_hypohesis_check import compute_theoretical_values
-from nums import get_matstat_nums
-from prob_plotting import *
-from variation_series import *
+from interval_series_task import make_task2
+from variation_series_task import make_task1
 
-nums = get_matstat_nums()
+PRECISION = 4
+
+if __name__ == "__main__":
+    make_task1(PRECISION)
+    make_task2(PRECISION)
