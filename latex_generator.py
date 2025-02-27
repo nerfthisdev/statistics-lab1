@@ -24,11 +24,11 @@ def dict_to_latex_table_str(data: dict[any, any]) -> str:
         value_row.append(str(value))
 
         if count % column_count == 0 or count == dict_len:
-            output += f"    \\hline\n"
-            output += f"    {' & '.join(key_row)}\\\\\n"
-            output += f"    \\hline\n"
-            output += f"    {' & '.join(value_row)}\\\\\n"
-            output += f"    \\hline\n"
+            output += rf"    \hline" + "\n"
+            output += rf"    \rule{{0pt}}{{4ex}} {' & '.join(key_row)}\\" + "\n"
+            output += rf"    \hline" + "\n"
+            output += rf"    {' & '.join(value_row)}\\" + "\n"
+            output += rf"    \hline" + "\n"
 
             key_row.clear()
             value_row.clear()
@@ -36,19 +36,22 @@ def dict_to_latex_table_str(data: dict[any, any]) -> str:
             if count != dict_len - 1:
                 output += f"    [1ex]\n"
 
-    output += "\\end{tabular}"
+    output += r"\end{tabular}"
     return output
 
 
 def get_latex_form_empirical_distribution_func(nums: list[float], func) -> str:
     sorted_nums = get_variation_series(set(nums))
 
-    output = "F^*(x) = \\begin{cases}\n"
-    output += f"    0.0, x < {sorted_nums[0]}\\\\\n"
+    output = r"F^*(x) = \begin{cases}" + "\n"
+    output += rf"    0.0, x < {sorted_nums[0]}\\" + "\n"
     for i in range(len(sorted_nums) - 1):
-        output += f"    {round(func(sorted_nums[i+1]), 10)},\\quad {sorted_nums[i]} \\leq x < {sorted_nums[i+1]} \\\\\n"
-    output += f"    1.0,\\quad x \\geq {sorted_nums[-1]} \\\\\n"
-    output += "\\end{cases}\n"
+        output += (
+            rf"    {round(func(sorted_nums[i+1]), 2)},\quad {sorted_nums[i]} \leq x < {sorted_nums[i+1]} \\"
+            + "\n"
+        )
+    output += rf"    1.0,\quad x \geq {sorted_nums[-1]} \\" + "\n"
+    output += r"\end{cases}" + "\n"
     return output
 
 
@@ -68,15 +71,15 @@ def get_confidence_interval_for_expvalue_large_set_with_latex_steps(
     return output
 
 
-def get_latex_form_empirical_distribution_func(nums: list[float], func) -> str:
-    sorted_nums = get_variation_series(set(nums))
+# def get_latex_form_empirical_distribution_func(nums: list[float], func) -> str:
+#     sorted_nums = get_variation_series(set(nums))
 
-    output = "F^*(x) = \n"
-    output += f"    0.0, x < {sorted_nums[0]}\n"
-    for i in range(len(sorted_nums) - 1):
-        output += f"    {round(func(sorted_nums[i+1]), 2)},  {sorted_nums[i]} <= x < {sorted_nums[i+1]} \n"
-    output += f"    1.0, x >= {sorted_nums[-1]} \n"
-    return output
+#     output = "F^*(x) = \n"
+#     output += f"    0.0, x < {sorted_nums[0]}\n"
+#     for i in range(len(sorted_nums) - 1):
+#         output += f"    {round(func(sorted_nums[i+1]), 2)},  {sorted_nums[i]} <= x < {sorted_nums[i+1]} \n"
+#     output += f"    1.0, x >= {sorted_nums[-1]} \n"
+#     return output
 
 
 def compute_table_to_latex_table_str_to_file(dict, path):
@@ -90,14 +93,14 @@ def compute_table_to_latex_table_str(data: dict[any, any]) -> str:
     width = len(data[1].keys()) + 1
 
     output = "\\begin{tabular}{|" + "|".join(["c"] * width) + "|}\n"
-    output += f"    \\hline\n"
-    output += f"    i & {' & '.join(f'${x}$' for x in data[1].keys())}\\\\\n"
-    output += f"    \\hline\n"
+    output += rf"    \hline" + "\n"
+    output += rf"    i & {' & '.join(f'${x}$' for x in data[1].keys())}\\" + "\n"
+    output += rf"    \hline" + "\n"
     for key, value in data.items():
         output += (
-            f"    {key} & {' & '.join([f'${x}$' for x in data[key].values()])}\\\\\n"
+            f"    {key} & {' & '.join([f'${x}$' for x in data[key].values()])}\\" + "\n"
         )
-        output += f"    \\hline\n"
+        output += rf"    \hline" + "\n"
 
-    output += "\\end{tabular}"
+    output += r"\end{tabular}"
     return output

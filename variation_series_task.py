@@ -34,7 +34,7 @@ def make_task1(precision):
     plot_polygon(
         statistical_series.keys(),
         statistical_series.values(),
-        "tex/output/task1/polygon.png",
+        "tex/output/task1/polygon.pdf",
     )
 
     ### оценки математического ожидания и среднеквадратического отклонения
@@ -73,7 +73,7 @@ def make_task1(precision):
     plot_function(
         nums,
         lambda x: empirical_distribution_function(x, nums),
-        "tex/output/task1/distribution_function.png",
+        "tex/output/task1/distribution_function.pdf",
     )
     ### Помощь для теха
     path_to_analytical_func_tex = "tex/output/task1/analytical_func.tex"

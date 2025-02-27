@@ -1,3 +1,4 @@
+from typing import List
 import matplotlib.pyplot as plt
 
 from interval_series import *
@@ -44,7 +45,7 @@ def plot_histogram_with_mode(
     plt.title("Гистограмма частот и полигон частот")
     plt.legend()
     plt.grid(True)
-    plt.savefig(file_name)
+    save_fig_to_pdf_and_png(file_name)
     plt.close()
 
 
@@ -58,7 +59,7 @@ def plot_polygon(x_vals: list[float], y_vals: list[float], file_name: str):
 
     plt.legend()
     plt.grid(True)
-    plt.savefig(file_name)
+    save_fig_to_pdf_and_png(file_name)
     plt.close()
 
 
@@ -74,7 +75,7 @@ def plot_function(nums: list[float], func, file_path: str):
     plt.ylabel("F^{*}(x)")
     plt.title("Эмпирическая функция распределения")
     plt.grid(True)
-    plt.savefig(file_path)
+    save_fig_to_pdf_and_png(file_path)
     plt.close()
 
 
@@ -118,7 +119,7 @@ def plot_cumulative_with_median(
     plt.title("Кумулята с медианой")
     plt.legend()
     plt.grid(True)
-    plt.savefig(file_name)
+    save_fig_to_pdf_and_png(file_name)
     plt.close()
 
 
@@ -157,5 +158,35 @@ def plot_ogive(
     plt.title("Огива")
     plt.legend()
     plt.grid(True)
-    plt.savefig(file_name)
+    save_fig_to_pdf_and_png(file_name)
     plt.close()
+
+
+def boxplot_for_two_lists(list1: List[float], list2: List[float], file_path: str):
+    # Создаем график с двумя subplots
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 5))
+
+    # Боксплот для первого набора данных
+    ax1.boxplot(list1, vert=True, patch_artist=True)
+    ax1.set_title("Первый набор данных")
+    ax1.set_ylabel("Значения")
+    ax1.grid(True)
+
+    ax2.boxplot(list2, vert=True, patch_artist=True)
+    ax2.set_title("Второй набор данных")
+    ax2.grid(True)
+
+    plt.suptitle("Сравнение распределений данных")
+    plt.tight_layout()
+
+    save_fig_to_pdf_and_png(file_path)
+    plt.close()
+
+
+def save_fig_to_pdf_and_png(file_path: str) -> None:
+    plt.savefig(file_path)
+    if file_path.endswith(".png"):
+        file_path = file_path[: -len(".png")] + ".pdf"
+    else:
+        file_path = file_path[: -len(".pdf")] + ".png"
+    plt.savefig(file_path)

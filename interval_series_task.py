@@ -20,6 +20,7 @@ from interval_series import *
 # - если ряд интервальный, то функция распределения должна совпадать с кумулятой и не быть ступенчатой
 # - x^{*} - середина интервала
 
+
 def make_task2(precision):
     nums = get_second_nums()
 
@@ -116,7 +117,6 @@ def make_task2(precision):
     )
     print(f"Мода: {round(mode,precision)}")
 
-
     median = get_median_from_interval_series(
         n=len(nums),
         interval_length=interval_length,
@@ -125,15 +125,16 @@ def make_task2(precision):
     )
     print(f"Медиана: {round(median,precision)}")
 
-
-    path_to_histogram = f"tex/output/task2/histogram_{bin_count}_bins.png"
+    path_to_histogram = f"tex/output/task2/histogram_{bin_count}_bins.pdf"
     plot_histogram_with_mode(whole_range, bin_count, nums, path_to_histogram, mode)
     print(f"Гистограмма записана в {path_to_histogram}")
 
-    path_to_cumulative = f"tex/output/task2/cumulative_{bin_count}_bins.png"
-    plot_cumulative_with_median(whole_range, bin_count, nums, path_to_cumulative, median)
+    path_to_cumulative = f"tex/output/task2/cumulative_{bin_count}_bins.pdf"
+    plot_cumulative_with_median(
+        whole_range, bin_count, nums, path_to_cumulative, median
+    )
     print(f"Кумулята записана в {path_to_cumulative}")
 
-    path_to_ogive = f"tex/output/task2/ogive_{bin_count}_bins.png"
+    path_to_ogive = f"tex/output/task2/ogive_{bin_count}_bins.pdf"
     plot_ogive(whole_range, bin_count, nums, path_to_ogive, median)
     print(f"Огива записана в {path_to_ogive}")
