@@ -29,8 +29,8 @@
 
 # Результаты
 ## Задание 1
-![alt text](https://github.com/huji-itmo/statistics-lab1/blob/main/tex/output/task1/distribution_function.png?raw=true)
-![alt text](https://github.com/huji-itmo/statistics-lab1/blob/main/tex/output/task1/polygon.png?raw=true)
+![alt text](https://github.com/nerfthisdev/statistics-lab1/blob/main/tex/output/task1/distribution_function.png?raw=true)
+![alt text](https://github.com/nerfthisdev/statistics-lab1/blob/main/tex/output/task1/polygon.png?raw=true)
 ```
 n = 79
 Вариационный ряд: 0 ≤ 0 ≤ 0 ≤ 0 ≤ 0 ≤ 0 ≤ 0 ≤ 0 ≤ 0 ≤ 0 ≤ 0 ≤ 0 ≤ 0 ≤ 0 ≤ 0 ≤ 0 ≤ 0 ≤ 0 ≤ 0 ≤ 0 ≤ 1 ≤ 1 ≤ 1 ≤ 1 ≤ 1 ≤ 1 ≤ 1 ≤ 1 ≤ 1 ≤ 1 ≤ 1 ≤ 1 ≤ 2 ≤ 2 ≤ 2 ≤ 2 ≤ 2 ≤ 2 ≤ 2 ≤ 2 ≤ 2 ≤ 2 ≤ 2 ≤ 2 ≤ 2 ≤ 2 ≤ 2 ≤ 2 ≤ 2 ≤ 2 ≤ 2 ≤ 3 ≤ 3 ≤ 3 ≤ 3 ≤ 3 ≤ 3 ≤ 3 ≤ 3 ≤ 3 ≤ 3 ≤ 3 ≤ 3 ≤ 3 ≤ 3 ≤ 3 ≤ 3 ≤ 3 ≤ 3 ≤ 3 ≤ 4 ≤ 4 ≤ 4 ≤ 4 ≤ 4 ≤ 4 ≤ 4 ≤ 4 ≤ 4
@@ -57,9 +57,9 @@ min: 0 max: 4
 Данные выборки А напоминают историю студента, который планировал учиться равномерно весь семестр, но всё откладывал до последнего. Как итог — 79 попыток, 20 из которых закончились нулём (мода = 0), а к третьему дню (медиана = 3) начался аврал! Распределение асимметрично (коэффициент асимметрии ≈ 0.02) с тяжёлыми "хвостами" (эксцесс ≈ 2.89), словно студент пытался нагнать упущенное за ночь. Гипотеза: генеральная совокупность распределена по закону, близкому к биномиальному с параметром успеха p ≈ 0.45. Но, как и в сессии, здесь есть нюансы — пик на 0 и резкий рост к 3 указывают на смещение. Возможно, это отрицательное биномиальное распределение, где "неудачи" (прокрастинация) преобладают до момента прорыва.
 
 ## Задание 2
-![alt text](https://github.com/huji-itmo/statistics-lab1/blob/main/tex/output/task2/cumulative_8_bins.png?raw=true)
-![alt text](https://github.com/huji-itmo/statistics-lab1/blob/main/tex/output/task2/histogram_8_bins.png?raw=true)
-![alt text](https://github.com/huji-itmo/statistics-lab1/blob/main/tex/output/task2/ogive_8_bins.png?raw=true)
+![alt text](https://github.com/nerfthisdev/statistics-lab1/blob/main/tex/output/task2/cumulative_8_bins.png?raw=true)
+![alt text](https://github.com/nerfthisdev/statistics-lab1/blob/main/tex/output/task2/histogram_8_bins.png?raw=true)
+![alt text](https://github.com/nerfthisdev/statistics-lab1/blob/main/tex/output/task2/ogive_8_bins.png?raw=true)
 
 ```
 n = 217
