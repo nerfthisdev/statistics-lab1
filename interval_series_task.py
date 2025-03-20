@@ -2,10 +2,15 @@ from latex_generator import dict_to_latex_table_str
 from nums import get_second_nums
 from prob_plotting import (
     plot_cumulative_with_median,
+    plot_function,
     plot_histogram_with_mode,
     plot_ogive,
 )
-from variation_series import get_extremes, get_whole_range
+from variation_series import (
+    empirical_distribution_function,
+    get_extremes,
+    get_whole_range,
+)
 from interval_series import *
 
 # 2. Для выборки В:
@@ -23,6 +28,12 @@ from interval_series import *
 
 def make_task2(precision):
     nums = get_second_nums()
+
+    plot_function(
+        nums,
+        lambda x: empirical_distribution_function(x, nums),
+        "tex/output/task2/distribution_function.pdf",
+    )
 
     whole_range = get_whole_range(nums)
     print(f"n = {len(nums)}")
