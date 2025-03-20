@@ -29,6 +29,7 @@
 ## Задание 1
 ![alt text](https://github.com/nerfthisdev/statistics-lab1/blob/main/tex/output/task1/distribution_function.png?raw=true)
 ![alt text](https://github.com/nerfthisdev/statistics-lab1/blob/main/tex/output/task1/polygon.png?raw=true)
+![alt text](https://github.com/nerfthisdev/statistics-lab1/blob/main/tex/output/task1/cumulative.png?raw=true)
 ```
 n = 64
 Вариационный ряд: 0 ≤ 0 ≤ 0 ≤ 0 ≤ 0 ≤ 0 ≤ 0 ≤ 0 ≤ 0 ≤ 0 ≤ 0 ≤ 0 ≤ 0 ≤ 0 ≤ 0 ≤ 0 ≤ 0 ≤ 0 ≤ 0 ≤ 0 ≤ 0 ≤ 0 ≤ 0 ≤ 1 ≤ 1 ≤ 1 ≤ 1 ≤ 1 ≤ 1 ≤ 1 ≤ 1 ≤ 1 ≤ 1 ≤ 1 ≤ 1 ≤ 1 ≤ 1 ≤ 1 ≤ 1 ≤ 1 ≤ 1 ≤ 1 ≤ 1 ≤ 2 ≤ 2 ≤ 2 ≤ 2 ≤ 2 ≤ 2 ≤ 2 ≤ 2 ≤ 2 ≤ 2 ≤ 2 ≤ 2 ≤ 2 ≤ 2 ≤ 2 ≤ 3 ≤ 3 ≤ 3 ≤ 4 ≤ 4 ≤ 4
