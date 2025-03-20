@@ -37,6 +37,16 @@ def make_task1(precision):
         "tex/output/task1/polygon.pdf",
     )
 
+    cumulative_values = []
+    prev = 0
+    for num in statistical_series.values():
+        cumulative_values.append(prev)
+        prev += num
+
+    plot_polygon(
+        statistical_series.keys(), cumulative_values, "tex/output/task1/cumulative.pdf"
+    )
+
     ### оценки математического ожидания и среднеквадратического отклонения
     expected_value = get_expected_value_estimate(nums)
     confidence_prob = 0.9
