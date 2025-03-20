@@ -60,6 +60,7 @@ min: 0 max: 4
 ![alt text](https://github.com/nerfthisdev/statistics-lab1/blob/main/tex/output/task2/cumulative_8_bins.png?raw=true)
 ![alt text](https://github.com/nerfthisdev/statistics-lab1/blob/main/tex/output/task2/histogram_8_bins.png?raw=true)
 ![alt text](https://github.com/nerfthisdev/statistics-lab1/blob/main/tex/output/task2/ogive_8_bins.png?raw=true)
+![alt text](https://github.com/nerfthisdev/statistics-lab1/blob/main/tex/output/boxplot.png?raw=true)
 
 
 
