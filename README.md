@@ -22,7 +22,7 @@
 - x^{*} - середина интервала
 
 
-![{9A93D347-E5E7-4920-A287-AFC89A79F6E1}](https://github.com/user-attachments/assets/a9e6f9f8-f203-4d36-bfaa-dcb1c68d2aff)
+![image](https://github.com/user-attachments/assets/a853df19-6572-47f1-b0d0-bc43ce864cd6)
 
 
 # Результаты
